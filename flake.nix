@@ -16,7 +16,7 @@
       flake = false;
     };
     neovim-src = {
-      url = "github:neovim/neovim";
+      url = "github:teto/neovim?ref=teto/add-zsh-completion";
       flake = false;
     };
     git-hooks = {
