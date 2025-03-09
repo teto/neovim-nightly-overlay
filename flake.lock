@@ -139,17 +139,14 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1741302428,
-        "narHash": "sha256-zcgucpL/rgEC/IIii6R4NvmtJsYT+/F0ub1FQOWVv0Q=",
-        "owner": "neovim",
-        "repo": "neovim",
-        "rev": "e46f07b1d2942c7b5c08fca9a4cac735ee2c0c71",
-        "type": "github"
+        "lastModified": 1741528507,
+        "narHash": "sha256-hUHVb4qKZyP7WwHLdocommDo2Tl8OhFiMpjSm03u4YY=",
+        "path": "/home/teto/neovim2",
+        "type": "path"
       },
       "original": {
-        "owner": "neovim",
-        "repo": "neovim",
-        "type": "github"
+        "path": "/home/teto/neovim2",
+        "type": "path"
       }
     },
     "nixpkgs": {

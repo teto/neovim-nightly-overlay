@@ -13,7 +13,7 @@
             config.packages.neovim-developer
           ];
 
-          dontFixCmake = true;
+          dontFixCmake = false;
 
           packages = config.devShells.minimal.nativeBuildInputs ++ [
             pkgs.clang-tools

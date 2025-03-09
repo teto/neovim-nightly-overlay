@@ -56,7 +56,7 @@ let
               // {
                 version = "bundled";
                 src = deps.treesitter;
-                cargoHash = "sha256-rjUn8F6WSxLQGrFzK23q4ClLePSpcMN2+i7rC02Fisk=";
+                cargoHash = "sha256-hNyYl9FVqWM6dxyYrGfXkMDiVgIrG1AX3KoW/GPY1HE=";
               }
             );
         };
@@ -91,6 +91,10 @@ in
       --replace-fail '@NVIM_VERSION_PRERELEASE@' '-nightly+${neovim-src.shortRev or "dirty"}'
   '';
 
+  nativeBuildInputs = oa.nativeBuildInputs ++ [ 
+    pkgs.installShellFiles
+  ];
+
   buildInputs =
     with pkgs;
     [
@@ -100,4 +104,10 @@ in
       }))
     ]
     ++ oa.buildInputs;
+
+    postInstall = ''
+      pwd 
+      ls -l
+      installShellCompletion --name _nvim --zsh ../contrib/zsh-completion.zsh
+      '';
 })

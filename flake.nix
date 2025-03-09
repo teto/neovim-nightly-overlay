@@ -16,7 +16,8 @@
       flake = false;
     };
     neovim-src = {
-      url = "github:neovim/neovim";
+      url = "/home/teto/neovim2";
+      # url = "github:neovim/neovim";
       flake = false;
     };
     git-hooks = {
