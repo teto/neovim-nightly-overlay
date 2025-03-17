@@ -11,8 +11,9 @@ neovim-debug.overrideAttrs (oa: {
     ++ [
       (lib.cmakeFeature "LUACHECK_PRG" (lib.getExe pkgs.luajit.pkgs.luacheck))
       (lib.cmakeBool "ENABLE_LTO" false)
-      (lib.cmakeBool "CMAKE_SKIP_INSTALL_RPATH" false)
-      (lib.cmakeBool "CMAKE_SKIP_RPATH" false)
+      # (lib.cmakeBool "CMAKE_SKIP_INSTALL_RPATH" false)
+      # (lib.cmakeBool "CMAKE_SKIP_RPATH" false)
+      (lib.cmakeBool "CMAKE_INSTALL_RPATH_USE_LINK_PATH" true)
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
