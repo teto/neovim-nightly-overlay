@@ -7,7 +7,7 @@
     }:
     {
       devShells = {
-        default = pkgs.mkShell {
+        toto = pkgs.mkShell {
           name = "neovim-developer-shell";
           inputsFrom = [
             config.packages.neovim-developer
