@@ -2,7 +2,6 @@
   neovim-debug,
   pkgs,
   lib,
-  neovim-src,
   ...
 }:
 neovim-debug.overrideAttrs (oa: {
@@ -11,6 +10,7 @@ neovim-debug.overrideAttrs (oa: {
     ++ [
       (lib.cmakeFeature "LUACHECK_PRG" (lib.getExe pkgs.luajit.pkgs.luacheck))
       (lib.cmakeBool "ENABLE_LTO" false)
+      (lib.cmakeBool "LOG_DEBUG" true)
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
@@ -24,8 +24,9 @@ neovim-debug.overrideAttrs (oa: {
 
   doCheck = pkgs.stdenv.isLinux;
   shellHook = ''
-    export VIMRUNTIME=${neovim-src}/runtime
-  '';
+    export VIMRUNTIME=$PWD/runtime
+    export NVIM_LOG_FILE=/tmp/nvim.log
+    '';
 
   # This package can be "failing" as soon as a memory leak is detected
   ignoreFailure = true;
