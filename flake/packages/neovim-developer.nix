@@ -9,6 +9,7 @@ neovim-debug.overrideAttrs (oa: {
     oa.cmakeFlags
     ++ [
       (lib.cmakeFeature "LUACHECK_PRG" (lib.getExe pkgs.luajit.pkgs.luacheck))
+      (lib.cmakeFeature "CACHE_PRG" (lib.getExe pkgs.ccache))
       (lib.cmakeBool "ENABLE_LTO" false)
       (lib.cmakeBool "LOG_DEBUG" true)
     ]
