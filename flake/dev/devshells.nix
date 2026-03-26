@@ -7,7 +7,9 @@
     }:
     {
       devShells = {
-        default = pkgs.mkShell {
+        default = (pkgs.mkShell.override({
+            stdenv = pkgs.llvmPackages_21.stdenv;
+          })) {
           name = "neovim-developer-shell";
           inputsFrom = [
             config.packages.neovim-developer
@@ -15,6 +17,7 @@
 
           packages = config.devShells.minimal.nativeBuildInputs ++ [
             pkgs.clang-tools
+            pkgs.glibc.dev # for string.h
           ];
 
           shellHook = ''
@@ -27,7 +30,7 @@
 
             # for treesitter functionaltests
             mkdir -p runtime/parser
-            # TODO loop over neovim-unwrapped.treesitter-parsers.c
+            # TODO loop over neovim-unwrapped.treesitter-parsers instead
             cp -f ${pkgs.vimPlugins.nvim-treesitter.builtGrammars.c}/parser runtime/parser/c.so
             cp -f ${pkgs.vimPlugins.nvim-treesitter.builtGrammars.vim}/parser runtime/parser/vim.so
           '';
@@ -44,6 +47,7 @@
             config.packages.neovim
           ];
           packages = with pkgs; [
+            # weird: why are those not in default devShell ?
             (python3.withPackages (ps: [ ps.msgpack ]))
             include-what-you-use
             jq

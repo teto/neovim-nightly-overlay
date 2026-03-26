@@ -3,9 +3,12 @@
   pkgs,
   lib,
   neovim-src,
+  # llvmPackages_21,
   ...
 }:
-neovim-debug.overrideAttrs (oa: {
+(neovim-debug.override ({
+  # stdenv = llvmPackages_21.stdenv;
+})).overrideAttrs (oa: {
   cmakeFlags =
     oa.cmakeFlags
     ++ [
@@ -28,6 +31,8 @@ neovim-debug.overrideAttrs (oa: {
     if [ -d $PWD/runtime ]; then
       echo "Detecting neovim runtime folder..."
       VIMRUNTIME="$PWD/runtime"
+      PATH="$PWD/build/bin:$PATH"
+
     fi
     echo "VIMRUNTIME set to $VIMRUNTIME"
   '';
