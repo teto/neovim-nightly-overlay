@@ -16,6 +16,7 @@
       (lib.cmakeFeature "LUACHECK_PRG" (lib.getExe luajit.pkgs.luacheck))
       (lib.cmakeFeature "CACHE_PRG" (lib.getExe ccache))
       (lib.cmakeBool "ENABLE_LTO" false)
+      (lib.cmakeBool "NVIM_LOG_DEBUG" true)
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
