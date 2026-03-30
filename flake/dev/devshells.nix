@@ -8,6 +8,7 @@
     {
       devShells = {
         default = (pkgs.mkShell.override({
+            # TODO check if necessary
             stdenv = pkgs.llvmPackages_21.stdenv;
           })) {
           name = "neovim-developer-shell";

@@ -2,7 +2,6 @@
   neovim-debug,
   pkgs,
   lib,
-  neovim-src,
   neovim-src, ccache,
   # llvmPackages_21,
   ...
@@ -13,7 +12,6 @@
   cmakeFlags =
     oa.cmakeFlags
     ++ [
-      (lib.cmakeFeature "LUACHECK_PRG" (lib.getExe luajit.pkgs.luacheck))
       (lib.cmakeFeature "CACHE_PRG" (lib.getExe ccache))
       (lib.cmakeBool "ENABLE_LTO" false)
       (lib.cmakeBool "NVIM_LOG_DEBUG" true)
