@@ -29,7 +29,7 @@
   doCheck = pkgs.stdenv.isLinux;
   shellHook = ''
     export VIMRUNTIME=${neovim-src}/runtime
-    if [ -d $PWD/runtime ]; then
+    if [ -d "$PWD/runtime" ]; then
       echo "Detecting neovim runtime folder..."
       VIMRUNTIME="$PWD/runtime"
       PATH="$PWD/build/bin:$PATH"

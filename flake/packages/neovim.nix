@@ -47,8 +47,4 @@ in
     substituteInPlace cmake.config/versiondef.h.in \
       --replace-fail '@NVIM_VERSION_PRERELEASE@' '-nightly+${neovim-src.shortRev or "dirty"}'
   '';
-
-  shellHook = ''
-    export VIMRUNTIME=$PWD/runtime
-  '';
 })
