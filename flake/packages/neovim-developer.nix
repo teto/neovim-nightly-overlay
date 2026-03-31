@@ -1,20 +1,23 @@
 {
   neovim-debug,
-  pkgs,
+  stdenv,
+  luajit,
+  stylua,
   lib,
   neovim-src, ccache,
-  # llvmPackages_21,
+  llvmPackages_22,
   ...
 }:
 (neovim-debug.override ({
-  # stdenv = llvmPackages_21.stdenv;
+  stdenv = llvmPackages_22.stdenv;
 })).overrideAttrs (oa: {
   cmakeFlags =
     oa.cmakeFlags
     ++ [
-      (lib.cmakeFeature "CACHE_PRG" (lib.getExe ccache))
+      # (lib.cmakeFeature "CACHE_PRG" (lib.getExe ccache))
       (lib.cmakeBool "ENABLE_LTO" false)
-      (lib.cmakeBool "NVIM_LOG_DEBUG" true)
+      # (lib.cmakeFeature "CMAKE_C_FLAGS" "-DNVIM_LOG_DEBUG" )
+      # (lib.cmakeBool "NVIM_LOG_DEBUG" true)
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
