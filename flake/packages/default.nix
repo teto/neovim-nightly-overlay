@@ -35,10 +35,10 @@
             inherit pkgs;
           };
 
-          neovim-developer = import ./neovim-developer.nix {
+          neovim-developer = pkgs.callPackage ./neovim-developer.nix {
             inherit (config.packages) neovim-debug;
             inherit (inputs) neovim-src;
-            inherit lib pkgs;
+            # inherit lib pkgs;
           };
         };
     };
