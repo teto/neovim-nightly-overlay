@@ -1,13 +1,14 @@
 {
   neovim,
-  stdenv,
-  llvmPackages_latest,
+  # stdenv,
+  # llvmPackages_latest,
   lib,
   ...
 }:
-(neovim.override {
-  stdenv = if stdenv.isLinux then llvmPackages_latest.stdenv else stdenv;
-}).overrideAttrs
+# (neovim.override {
+#   # stdenv = if stdenv.isLinux then llvmPackages_latest.stdenv else stdenv;
+# })
+neovim.overrideAttrs
   (oa: {
     pname = "${oa.pname}-debug";
 

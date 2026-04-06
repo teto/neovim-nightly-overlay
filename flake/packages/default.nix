@@ -30,8 +30,9 @@
             inherit (config.packages) tree-sitter;
           };
 
-          neovim-debug = pkgs.callPackage ./neovim-debug.nix {
+          neovim-debug = import ./neovim-debug.nix {
             inherit (config.packages) neovim;
+            inherit pkgs lib ;
           };
 
           neovim-developer = pkgs.callPackage ./neovim-developer.nix {
