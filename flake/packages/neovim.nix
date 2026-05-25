@@ -7,7 +7,15 @@
   ...
 }:
 let
-  src = neovim-src;
+  src = lib.cleanSourceWith {
+    src = neovim-src;
+    filter =
+      path: _type:
+      let
+        relPath = lib.removePrefix "${neovim-src}/" (toString path);
+      in
+      relPath != "build" && !lib.hasPrefix "build/" relPath;
+  };
   deps = neovim-dependencies;
 
   # The following overrides will only take effect for linux hosts
